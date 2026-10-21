@@ -9,4 +9,5 @@ ShellRoot {
     Island {}
     Bar {}
     Popups {}
+    Osd {}
 }

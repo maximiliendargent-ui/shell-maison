@@ -29,10 +29,11 @@ Essais : `ISLAND_TEST=meteo qs -c shell-maison` (île ouverte sur un onglet), `B
 | `Accueil.qml` … `Session.qml` | Onglets de l'île : Accueil, Musique, Son, Système, Wi-Fi, Bluetooth (`Appareils.qml`), Météo, Calendrier, Notifications, Session | |
 | `Notifs.qml` | Serveur de notifications (repris à Noctalia au démarrage, qui le récupère si shell-maison s'arrête), historique (`~/.local/state/shell-maison/notifications.json`), Ne pas déranger | Notifications |
 | `Popups.qml` | Bulles de notification en haut à droite : actions, 5 s, survol = pause | |
+| `Osd.qml` | Pastille verticale à droite quand le volume change ou qu'on coupe le son ou le micro (touches son passées sur `wpctl` dans `hypr/maison.lua`) | OSD |
 | `Sys.qml` | État partagé : musique (MPRIS), son (PipeWire), réseau, moniteurs, météo | |
 | `Theme.qml` | Couleurs, police (Maple Mono NF), courbes d'animation | |
 | `Card.qml`, `Tile.qml`, `Level.qml`, `ListRow.qml`, `MediaCard.qml` | Briques d'interface | |
-| `hypr/maison.lua` | Réglages Hyprland de la session Maison : démarrage, raccourcis | |
+| `hypr/maison.lua` | Réglages Hyprland de la session Maison : démarrage, raccourcis (île, notifications, touches son) | |
 | `bin/island-open` | Ouvre l'île sur un onglet (raccourcis) ; sans île, ouvre le panneau Noctalia équivalent | |
 
 ## Encore pris chez Noctalia
@@ -45,5 +46,5 @@ Essais : `ISLAND_TEST=meteo qs -c shell-maison` (île ouverte sur un onglet), `B
 
 ## À faire
 
-OSD volume / luminosité, fond d'écran, couleurs (matugen),
+Luminosité (OSD), fond d'écran, couleurs (matugen),
 écran de verrouillage, agent Polkit, lanceur et emojis, presse-papiers, captures.
