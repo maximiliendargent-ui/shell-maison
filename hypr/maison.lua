@@ -4,10 +4,9 @@
 
 local bin = os.getenv("HOME") .. "/Projects/shell-maison/bin/"
 
+-- Noctalia tourne encore (couleurs, fond d'écran, verrouillage…), avec sa config de session Maison
+-- (noctalia/noctalia/zz-maison.toml : sans barre, notifications ni agent Polkit)
 hl.on("hyprland.start", function ()
-    -- Noctalia tourne encore (couleurs, notifications, verrouillage, Polkit…), mais sans sa barre :
-    -- réessaie jusqu'à ce qu'il réponde (10 s max)
-    hl.exec_cmd("sh -c 'for i in $(seq 50); do noctalia msg bar-hide >/dev/null 2>&1 && break; sleep 0.2; done'")
     hl.exec_cmd("qs -c shell-maison")
 end)
 

@@ -10,4 +10,6 @@ ShellRoot {
     Bar {}
     Popups {}
     Osd {}
+    Polkit {}
+    Lock {}
 }

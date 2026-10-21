@@ -1,0 +1,16 @@
+# Config de Noctalia pour la session « Hyprland (Maison) » (NOCTALIA_CONFIG_HOME, ~/.config/uwsm/env-maison).
+# Noctalia fusionne tous les .toml de ce dossier par ordre alphabétique : config.toml (lien vers la vraie
+# config), puis ce fichier, qui coupe ce que shell-maison remplace. settings.toml (réglages de l'interface)
+# l'emporte encore sur les deux, mais ne contient aucune de ces clés.
+
+# Barre : Bar.qml
+[bar.default]
+enabled = false
+
+# Notifications : Notifs.qml tient le service
+[notification]
+enable_daemon = false
+
+# Fenêtre de mot de passe (pkexec) : Polkit.qml
+[shell]
+polkit_agent = false
