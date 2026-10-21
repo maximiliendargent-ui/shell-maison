@@ -63,6 +63,34 @@ Scope {
         { id: "session", file: "Session.qml" }  // bouton ⏻ à droite, pas d'icône dans la rangée
     ]
 
+    // Bords actifs (1 pixel) : milieu du haut → Accueil, coin haut droit → Session ; 2 s pour aller sur l'île
+    Variants {
+        model: [
+            { tab: "accueil", width: 400, right: false },
+            { tab: "session", width: 1, right: true }
+        ]
+        PanelWindow {
+            required property var modelData
+            visible: !root.hidden && !root.expanded
+            anchors { top: true; right: modelData.right }
+            implicitWidth: modelData.width
+            implicitHeight: 1
+            color: "transparent"
+            exclusionMode: ExclusionMode.Ignore
+            WlrLayershell.layer: WlrLayer.Overlay
+            WlrLayershell.namespace: "island-edge"
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: {
+                    root.tab = modelData.tab
+                    root.expanded = true
+                    unvisited.restart()
+                }
+            }
+        }
+    }
+
     PanelWindow {
         visible: !root.hidden
         anchors.top: true
