@@ -23,14 +23,23 @@ rebind("SUPER + Escape",   bin .. "island-open session",   "Système: Menu syst�
 
 -- Touches son : wpctl au lieu de noctalia msg (l'OSD de Noctalia ne s'affiche que pour ses propres commandes,
 -- Osd.qml réagit à tous les changements)
-local function rebindLocked(key, cmd, repeating)
+local function rebindLocked(key, cmd, repeating, description)
     pcall(hl.unbind, key)
-    hl.bind(key, hl.dsp.exec_cmd(cmd), { locked = true, repeating = repeating })
+    hl.bind(key, hl.dsp.exec_cmd(cmd), { locked = true, repeating = repeating, description = description })
 end
 rebindLocked("XF86AudioRaiseVolume", "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+", true)
 rebindLocked("XF86AudioLowerVolume", "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-", true)
 rebindLocked("XF86AudioMute",        "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")
 rebindLocked("XF86AudioMicMute",     "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")
+
+-- Touches multimédia : lecteur choisi par shell-maison (Sys.qml, MPRIS)
+local media = "qs -c shell-maison ipc call media "
+rebindLocked("XF86AudioPlay",  media .. "toggle")
+rebindLocked("XF86AudioPause", media .. "toggle")
+rebindLocked("XF86AudioNext",  media .. "next")
+rebindLocked("XF86AudioPrev",  media .. "previous")
+rebindLocked("ALT + XF86AudioPlay",         media .. "next",     false, "Médias: Piste suivante (Alt + Lecture)")
+rebindLocked("ALT + SHIFT + XF86AudioPlay", media .. "previous", false, "Médias: Piste précédente (Alt + Shift + Lecture)")
 pcall(hl.unbind, "SUPER + SHIFT + M")
 hl.bind("SUPER + SHIFT + M", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
     { locked = true, description = "Médias: Couper / rétablir le son" })

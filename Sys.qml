@@ -23,6 +23,14 @@ Singleton {
     readonly property var player:
         (players.includes(chosen) && chosen) || players.find(p => p.isPlaying) || players[0] || null
 
+    // Touches multimédia : qs -c shell-maison ipc call media <toggle|next|previous>
+    IpcHandler {
+        target: "media"
+        function toggle(): void { if (sys.player) sys.player.togglePlaying() }
+        function next(): void { if (sys.player) sys.player.next() }
+        function previous(): void { if (sys.player) sys.player.previous() }
+    }
+
     // Son
     readonly property var sink: Pipewire.defaultAudioSink
     readonly property var source: Pipewire.defaultAudioSource
@@ -30,23 +38,18 @@ Singleton {
     readonly property var streams: Pipewire.nodes.values.filter(n => n.isSink && n.isStream && n.audio)
     PwObjectTracker { objects: [sys.sink, sys.source].concat(sys.sinks).concat(sys.streams) }
 
-    // Wi-Fi et Bluetooth lus auprès de Noctalia. La lumière nocturne n'a pas de lecture d'état : retenue ici.
-    // ponytail: état local, faux si on la bascule ailleurs (barre, raccourci) ; lire Noctalia s'il expose un jour son état
+    // Wi-Fi lu auprès de NetworkManager (Bluetooth : module Quickshell, dans Appareils.qml).
+    // La lumière nocturne n'a pas de lecture d'état : retenue ici.
+    // ponytail: état local, faux si on la bascule ailleurs (barre, raccourci) ; lire hyprsunset quand il la gérera
     property bool wifi: false
-    property bool bluetooth: false
     property bool nightlight: false
 
     Process {
         id: status
-        command: ["sh", "-c", "noctalia msg wifi-status; noctalia msg bluetooth-status"]
-        stdout: StdioCollector {
-            onStreamFinished: {
-                const l = text.trim().split("\n")
-                sys.wifi = l[0] === "on"
-                sys.bluetooth = l[1] === "on"
-            }
-        }
+        command: ["nmcli", "radio", "wifi"]
+        stdout: StdioCollector { onStreamFinished: sys.wifi = text.trim() === "enabled" }
     }
+    function toggleWifi() { run(["nmcli", "radio", "wifi", sys.wifi ? "off" : "on"]) }
 
     function run(args) {
         Quickshell.execDetached(args)
@@ -91,16 +94,37 @@ Singleton {
         }
     }
 
-    // Météo : cache de Noctalia (même source que son centre de contrôle)
+    // Météo : Open-Meteo (gratuit, sans clé, la source de Noctalia), relue toutes les 30 min.
+    // Mise en forme { location_name, current: {…}, forecast_days: [{…}] } pour Accueil, Météo et le verrouillage.
+    readonly property var place: ({ name: "Bruxelles", lat: 50.85, lon: 4.38 })
     property var weather: null
-    FileView {
-        path: Quickshell.env("HOME") + "/.cache/noctalia/weather.json"
-        watchChanges: true
-        onFileChanged: reload()
-        onLoaded: {
-            try { sys.weather = JSON.parse(text()).snapshot } catch (e) {}
+    Process {
+        id: weatherProc
+        command: ["curl", "-sf", "--max-time", "15", "https://api.open-meteo.com/v1/forecast?latitude=" + sys.place.lat
+            + "&longitude=" + sys.place.lon + "&timezone=auto&forecast_days=7"
+            + "&current=temperature_2m,apparent_temperature,relative_humidity_2m,is_day,weather_code,wind_speed_10m"
+            + "&daily=weather_code,temperature_2m_max,temperature_2m_min"]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                try {
+                    const r = JSON.parse(text), c = r.current, d = r.daily
+                    sys.weather = {
+                        location_name: sys.place.name,
+                        current: {
+                            temperature_c: c.temperature_2m, apparent_temperature_c: c.apparent_temperature,
+                            relative_humidity_percent: c.relative_humidity_2m, is_day: !!c.is_day,
+                            weather_code: c.weather_code, wind_speed_kmh: c.wind_speed_10m
+                        },
+                        forecast_days: d.time.map((t, i) => ({
+                            date_iso: t, weather_code: d.weather_code[i],
+                            temperature_max_c: d.temperature_2m_max[i], temperature_min_c: d.temperature_2m_min[i]
+                        }))
+                    }
+                } catch (e) {}  // hors ligne : on garde la dernière météo
+            }
         }
     }
+    Timer { interval: 30 * 60 * 1000; running: true; repeat: true; triggeredOnStart: true; onTriggered: weatherProc.running = true }
 
     // Moniteurs (onglet Système) : processeur, mémoire, carte graphique, disque
     property bool monitoring: false

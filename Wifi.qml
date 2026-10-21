@@ -20,7 +20,7 @@ Column {
         icon: Sys.wifi ? "\u{f05a9}" : "\u{f05aa}"
         label: Sys.wifi ? "Wi-Fi activé" : "Wi-Fi désactivé"
         on: Sys.wifi
-        onClicked: Sys.run(["noctalia", "msg", "wifi-toggle"])
+        onClicked: Sys.toggleWifi()
     }
 
     Repeater {
