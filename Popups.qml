@@ -9,7 +9,7 @@ import Quickshell.Services.Notifications
 
 Scope {
     PanelWindow {
-        visible: Notifs.popups.length > 0
+        visible: Notifs.popups.length > 0 || !!Notifs.toast
         anchors { top: true; right: true }
         margins { top: 10; right: 10 }
         exclusiveZone: 0
@@ -23,6 +23,21 @@ Scope {
             id: stack
             width: parent.width
             spacing: 8
+
+            // Message bref (Ne pas déranger…), aligné à droite
+            Rectangle {
+                visible: !!Notifs.toast
+                anchors.right: parent.right
+                width: toastText.implicitWidth + 32; height: 40; radius: 20
+                color: Theme.c.primary
+                Text {
+                    id: toastText
+                    anchors.centerIn: parent
+                    text: Notifs.toast
+                    color: Theme.c.on_primary
+                    font { family: Theme.font; pixelSize: 13; bold: true }
+                }
+            }
 
             Repeater {
                 model: Notifs.popups.slice(0, 5)

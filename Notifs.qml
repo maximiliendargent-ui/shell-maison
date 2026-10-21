@@ -17,6 +17,7 @@ Singleton {
     property var history: []   // { app, icon, summary, body, time } — la plus récente en premier
 
     NotificationServer {
+        id: server
         actionsSupported: true
         imageSupported: true
         bodyMarkupSupported: false
@@ -45,11 +46,23 @@ Singleton {
             "RequestName su org.freedesktop.Notifications 6 >/dev/null; sleep 1; done"])
     }
 
+    // Message bref affiché par Popups.qml (ex. Ne pas déranger activé)
+    property string toast: ""
+    Timer { id: toastTimer; interval: 1800; onTriggered: notifs.toast = "" }
+    function say(text) { notifs.toast = text; toastTimer.restart() }
+
+    function toggleDnd() {
+        notifs.dnd = !notifs.dnd
+        say(notifs.dnd ? "\u{f009b}  Ne pas déranger activé" : "\u{f009a}  Ne pas déranger désactivé")
+    }
+
     function hide(n) { notifs.popups = notifs.popups.filter(p => p !== n) }
     function clearPopups() { for (const n of notifs.popups) n.dismiss(); notifs.popups = [] }
     function clearHistory() { notifs.history = []; store.save() }
+    // La dernière notification encore ouverte côté appli, même si sa bulle a disparu
     function invokeLatest() {
-        const n = notifs.popups[0]
+        const tracked = server.trackedNotifications.values
+        const n = notifs.popups[0] || tracked[tracked.length - 1]
         if (!n) return
         const def = n.actions.find(a => a.identifier === "default")
         if (def) def.invoke()
@@ -73,7 +86,7 @@ Singleton {
     IpcHandler {
         target: "notifs"
         function clear(): void { notifs.clearPopups() }
-        function dnd(): void { notifs.dnd = !notifs.dnd }
+        function dnd(): void { notifs.toggleDnd() }
         function latest(): void { notifs.invokeLatest() }
     }
 }

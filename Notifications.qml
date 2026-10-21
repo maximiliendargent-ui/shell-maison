@@ -12,7 +12,7 @@ Column {
             icon: Notifs.dnd ? "\u{f009b}" : "\u{f009a}"
             label: "Ne pas déranger"
             on: Notifs.dnd
-            onClicked: Notifs.dnd = !Notifs.dnd
+            onClicked: Notifs.toggleDnd()
         }
         Tile {
             width: (parent.width - 10) / 2; height: 48
