@@ -8,6 +8,9 @@ local bin = os.getenv("HOME") .. "/Projects/shell-maison/bin/"
 -- (noctalia/noctalia/zz-maison.toml : sans barre, notifications ni agent Polkit)
 hl.on("hyprland.start", function ()
     hl.exec_cmd("qs -c shell-maison")
+    -- Historique du presse-papiers (Clipboard.qml) : texte et images
+    hl.exec_cmd("wl-paste --watch cliphist store")
+    hl.exec_cmd("wl-paste --type image --watch cliphist store")
 end)
 
 -- Raccourcis du centre de contrôle et de la session : l'île au lieu des panneaux de Noctalia
@@ -20,6 +23,14 @@ rebind("SUPER + CTRL + A", bin .. "island-open son",       "Système: Panneau so
 rebind("SUPER + CTRL + B", bin .. "island-open bluetooth", "Système: Panneau Bluetooth")
 rebind("SUPER + CTRL + W", bin .. "island-open wifi",      "Système: Panneau réseau")
 rebind("SUPER + Escape",   bin .. "island-open session",   "Système: Menu système (veille, redémarrage…)")
+
+-- Presse-papiers : Clipboard.qml (cliphist) au lieu du panneau de Noctalia
+rebind("SUPER + V",        "qs -c shell-maison ipc call clipboard toggle", "Système: Historique du presse-papiers")
+rebind("SUPER + CTRL + V", "qs -c shell-maison ipc call clipboard toggle", "Système: Historique du presse-papiers")
+
+-- Emojis : Emojis.qml au lieu du lanceur de Noctalia
+rebind("SUPER + CTRL + E", "qs -c shell-maison ipc call emojis toggle", "Lanceur: Emojis")
+rebind("SUPER + Period",   "qs -c shell-maison ipc call emojis toggle", "Lanceur: Emojis")
 
 -- Touches son : wpctl au lieu de noctalia msg (l'OSD de Noctalia ne s'affiche que pour ses propres commandes,
 -- Osd.qml réagit à tous les changements)
