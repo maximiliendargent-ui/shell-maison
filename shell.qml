@@ -8,4 +8,5 @@ import Quickshell
 ShellRoot {
     Island {}
     Bar {}
+    Popups {}
 }

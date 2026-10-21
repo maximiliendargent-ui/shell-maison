@@ -21,3 +21,10 @@ rebind("SUPER + CTRL + A", bin .. "island-open son",       "Système: Panneau so
 rebind("SUPER + CTRL + B", bin .. "island-open bluetooth", "Système: Panneau Bluetooth")
 rebind("SUPER + CTRL + W", bin .. "island-open wifi",      "Système: Panneau réseau")
 rebind("SUPER + Escape",   bin .. "island-open session",   "Système: Menu système (veille, redémarrage…)")
+
+-- Notifications : celles de shell-maison (Notifs.qml) au lieu de celles de Noctalia
+local notifs = "qs -c shell-maison ipc call notifs "
+rebind("SUPER + Comma",               notifs .. "clear",                   "Notifications: Fermer les notifications")
+rebind("SUPER + CTRL + Comma",        notifs .. "dnd",                     "Notifications: Ne pas déranger")
+rebind("SUPER + ALT + Comma",         notifs .. "latest",                  "Notifications: Ouvrir la dernière notification")
+rebind("SUPER + SHIFT + ALT + Comma", bin .. "island-open notifications", "Notifications: Historique")

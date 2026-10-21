@@ -60,6 +60,7 @@ Scope {
         { id: "bluetooth", icon: "\u{f00af}", file: "Appareils.qml" },
         { id: "meteo", icon: "\u{f0595}", file: "Meteo.qml" },
         { id: "calendrier", icon: "\u{f00ed}", file: "Calendrier.qml" },
+        { id: "notifications", icon: "\u{f009a}", file: "Notifications.qml" },
         { id: "session", file: "Session.qml" }  // bouton ⏻ à droite, pas d'icône dans la rangée
     ]
 

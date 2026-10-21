@@ -26,7 +26,9 @@ Essais : `ISLAND_TEST=meteo qs -c shell-maison` (île ouverte sur un onglet), `B
 | `shell.qml` | Assemble les composants | |
 | `Bar.qml` | Barre à gauche, masquée : espaces de travail, heure, Wallhaven, Claude, mises à jour | Barre |
 | `Island.qml` | Île en haut au centre : l'heure, s'ouvre au survol en panneau à onglets | Centre de contrôle, menu de session |
-| `Accueil.qml` … `Session.qml` | Onglets de l'île : Accueil, Musique, Son, Système, Wi-Fi, Bluetooth (`Appareils.qml`), Météo, Calendrier, Session | |
+| `Accueil.qml` … `Session.qml` | Onglets de l'île : Accueil, Musique, Son, Système, Wi-Fi, Bluetooth (`Appareils.qml`), Météo, Calendrier, Notifications, Session | |
+| `Notifs.qml` | Serveur de notifications (repris à Noctalia au démarrage, qui le récupère si shell-maison s'arrête), historique (`~/.local/state/shell-maison/notifications.json`), Ne pas déranger | Notifications |
+| `Popups.qml` | Bulles de notification en haut à droite : actions, 5 s, survol = pause | |
 | `Sys.qml` | État partagé : musique (MPRIS), son (PipeWire), réseau, moniteurs, météo | |
 | `Theme.qml` | Couleurs, police (Maple Mono NF), courbes d'animation | |
 | `Card.qml`, `Tile.qml`, `Level.qml`, `ListRow.qml`, `MediaCard.qml` | Briques d'interface | |
@@ -43,5 +45,5 @@ Essais : `ISLAND_TEST=meteo qs -c shell-maison` (île ouverte sur un onglet), `B
 
 ## À faire
 
-Notifications et leur historique, OSD volume / luminosité, fond d'écran, couleurs (matugen),
+OSD volume / luminosité, fond d'écran, couleurs (matugen),
 écran de verrouillage, agent Polkit, lanceur et emojis, presse-papiers, captures.
