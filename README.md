@@ -42,7 +42,6 @@ Essais : `ISLAND_TEST=meteo qs -c shell-maison` (île ouverte sur un onglet), `B
 | `Card.qml`, `Tile.qml`, `Level.qml`, `ListRow.qml`, `MediaCard.qml` | Briques d'interface | |
 | `hypr/maison.lua` | Réglages Hyprland de la session Maison : démarrage (shell, cliphist), raccourcis (île, notifications, son, multimédia, emojis, presse-papiers) | |
 | `bin/fond`, `couleurs/` | Fond d'écran (awww) et couleurs tirées du fond (matugen, `couleurs/matugen.toml`) : mêmes fichiers de sortie que les modèles de Noctalia (applis, bordures, menu, page d'accueil), couleurs de terminal remplacées par leurs équivalents Material. `fond <image>`, `fond` (au hasard, à la connexion), `fond get` ; le carrousel (`wallpicker`) l'appelle dans la session Maison | Fond d'écran, modèles de couleurs |
-| `noctalia/noctalia/` | Config de Noctalia pour la session Maison : liens vers la vraie + `zz-maison.toml` (sans barre, notifications, agent Polkit, fond ni couleurs : ses modèles perso écrivent dans `~/.cache/shell-maison/noctalia-ignore`) | |
 | `hypr/hypridle.conf` | Verrouillage après 10 min d'inactivité, écran éteint après 15 min, verrouillage avant la veille (hypridle, lancé par `maison.lua`) | (rien : Noctalia n'avait pas de veille réglée) |
 | `bin/island-open` | Ouvre l'île sur un onglet (raccourcis) ; sans île, ouvre le panneau Noctalia équivalent | |
 

@@ -4,8 +4,7 @@
 
 local bin = os.getenv("HOME") .. "/Projects/shell-maison/bin/"
 
--- Noctalia tourne encore (plugins, réglages…), avec sa config de session Maison
--- (noctalia/noctalia/zz-maison.toml : sans barre, notifications, agent Polkit, fond ni couleurs)
+-- Démarrage (Noctalia n'est pas lancé dans cette session : ~/.config/hypr/config/autostart.lua le saute)
 hl.on("hyprland.start", function ()
     hl.exec_cmd("qs -c shell-maison")
     -- Verrouillage et extinction de l'écran après inactivité
