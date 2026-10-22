@@ -12,7 +12,7 @@ C'est le shell du bureau : session **« Hyprland (Maison) »** de l'écran de co
 Hyprland (dotfiles, `~/.config/hypr/config/`) le lance dans `autostart.lua` (shell, hypridle, awww + `bin/fond`,
 cliphist) et branche ses raccourcis dans `binds.lua` (scripts de `bin/`, `qs -c shell-maison ipc call …`).
 
-À la main : `ln -s ~/Projects/shell-maison ~/.config/quickshell/shell-maison` (une fois), puis `qs -c shell-maison`.
+Emplacement : `~/.config/quickshell/shell-maison` (dépôt Git à part, exclu des dotfiles). À la main : `qs -c shell-maison`.
 
 Essais : `ISLAND_TEST=meteo qs -c shell-maison` (île ouverte sur un onglet), `BAR_TEST=1 qs -c shell-maison`
 (barre toujours sortie).

@@ -70,8 +70,8 @@ output_path = "~/.config/vesktop/themes/discord-system24.css"
 # papirus-folders prend ~6 s et matugen attend chaque post_hook avant de passer au modèle suivant
 [templates.papirus]
 input_path = "papirus/colors"
-output_path = "~/Projects/shell-maison/couleurs/papirus/colors-final"
-post_hook = "setsid -f flock ~/.local/state/shell-maison/papirus.lock bash ~/Projects/shell-maison/couleurs/papirus/apply.sh >/dev/null 2>&1"
+output_path = "~/.config/quickshell/shell-maison/couleurs/papirus/colors-final"
+post_hook = "setsid -f flock ~/.local/state/shell-maison/papirus.lock bash ~/.config/quickshell/shell-maison/couleurs/papirus/apply.sh >/dev/null 2>&1"
 
 # Bureau
 
