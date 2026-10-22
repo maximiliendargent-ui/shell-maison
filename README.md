@@ -51,5 +51,5 @@ Essais : `ISLAND_TEST=meteo qs -c shell-maison` (île ouverte sur un onglet), `B
 
 ## À faire
 
-Tester puis brancher `Lock.qml`. Ensuite, avec des outils à installer : couleurs (matugen), fond d'écran
+Avec des outils à installer : couleurs (matugen), fond d'écran
 (awww), lumière nocturne (hyprsunset), veille automatique (hypridle), annotation des captures (satty).

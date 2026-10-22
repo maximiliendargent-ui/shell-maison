@@ -13,8 +13,8 @@ Grid {
 
     Repeater {
         model: [
-            { id: "lock", icon: "\u{f033e}", label: "Verrouiller", cmd: ["noctalia", "msg", "session", "lock"] },
-            { id: "sleep", icon: "\u{f04b2}", label: "Veille", cmd: ["systemctl", "suspend-then-hibernate"] },
+            { id: "lock", icon: "\u{f033e}", label: "Verrouiller", cmd: ["qs", "-c", "shell-maison", "ipc", "call", "lock", "lock"] },
+            { id: "sleep", icon: "\u{f04b2}", label: "Veille", cmd: ["sh", "-c", "qs -c shell-maison ipc call lock lock; sleep 1; systemctl suspend-then-hibernate"] },
             { id: "logout", icon: "\u{f0343}", label: "Déconnexion", cmd: ["uwsm", "stop"], confirm: true },
             { id: "reboot", icon: "\u{f0709}", label: "Redémarrer", cmd: ["systemctl", "reboot"], confirm: true },
             { id: "windows", icon: "\u{f05b3}", label: "Windows", cmd: [Quickshell.env("HOME") + "/.local/bin/reboot-windows"], confirm: true },

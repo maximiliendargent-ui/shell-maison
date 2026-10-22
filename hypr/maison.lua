@@ -61,3 +61,6 @@ rebind("SUPER + Comma",               notifs .. "clear",                   "Noti
 rebind("SUPER + CTRL + Comma",        notifs .. "dnd",                     "Notifications: Ne pas déranger")
 rebind("SUPER + ALT + Comma",         notifs .. "latest",                  "Notifications: Ouvrir la dernière notification")
 rebind("SUPER + SHIFT + ALT + Comma", bin .. "island-open notifications", "Notifications: Historique")
+
+-- Verrouillage : Lock.qml au lieu de celui de Noctalia
+rebind("SUPER + CTRL + L", "qs -c shell-maison ipc call lock lock", "Système: Verrouiller l'écran")
