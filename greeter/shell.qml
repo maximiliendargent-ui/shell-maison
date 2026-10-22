@@ -80,8 +80,9 @@ ShellRoot {
             Greetd.cancelSession()
         }
         function onReadyToLaunch() {
-            // greetd colle les arguments avec des espaces dans « sh -c "exec …" » : passer la ligne Exec telle quelle
-            Greetd.launch([root.sessions[root.session].exec], [], true)
+            // greetd colle les arguments avec des espaces dans « sh -c "exec …" » : passer la ligne Exec telle quelle.
+            // XDG_SESSION_TYPE=wayland : sinon pam_kwallet5 voit une session « tty » et ne déverrouille pas KWallet
+            Greetd.launch([root.sessions[root.session].exec], ["XDG_SESSION_TYPE=wayland"], true)
         }
     }
 
