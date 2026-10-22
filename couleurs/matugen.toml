@@ -33,10 +33,6 @@ input_path = "modeles/kcolorscheme.colors"
 output_path = "~/.local/share/color-schemes/noctalia.colors"
 post_hook = "plasma-apply-colorscheme BreezeDark >/dev/null; plasma-apply-colorscheme noctalia >/dev/null"
 
-[templates.qt5]
-input_path = "modeles/qtct.conf"
-output_path = "~/.config/qt5ct/colors/noctalia.conf"
-
 [templates.qt6]
 input_path = "modeles/qtct.conf"
 output_path = "~/.config/qt6ct/colors/noctalia.conf"
