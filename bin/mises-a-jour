@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Met le système à jour dans Ghostty (dépôts, AUR, Flatpak), comme l’entrée Update du menu.
+# Lancé par le bouton Mises à jour de la barre et par ~/.local/bin/auto-update dans la session Maison.
+exec uwsm app -- ghostty --class=dev.menu -e bash -c 'paru -Syu && flatpak update -y && echo && echo "✓ Terminé" || { echo; echo "✗ Échec : voir le message ci-dessus"; }; echo; read -rp "Entrée pour fermer…"'

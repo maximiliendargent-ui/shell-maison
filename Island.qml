@@ -195,7 +195,6 @@ Scope {
                     spacing: 4
                     Repeater {
                         model: [
-                            { icon: "\u{f0493}", cmd: ["noctalia", "msg", "settings-toggle"] },
                             { icon: "\u{f0425}", tab: "session" }
                         ]
                         Rectangle {

@@ -17,7 +17,13 @@ Scope {
 
     readonly property bool hidden: {
         const ws = Hyprland.focusedWorkspace
-        return !ws || ws.name === "gaming" || ws.hasFullscreen
+        return off || !ws || ws.name === "gaming" || ws.hasFullscreen
+    }
+    // Masquée tout à fait : qs -c shell-maison ipc call bar toggle (Super + Shift + Espace)
+    property bool off: false
+    IpcHandler {
+        target: "bar"
+        function toggle(): void { bar.off = !bar.off }
     }
 
     // Essais : BAR_TEST=1 la garde sortie
@@ -113,10 +119,10 @@ Scope {
             // Boutons
             Repeater {
                 model: [
-                    { icon: "\u{f02e9}", tip: "Wallhaven", cmd: ["noctalia", "msg", "panel-toggle", "noctalia/wallhaven:browser"] },
-                    { image: bar.home + "/.config/noctalia/icons/claude.svg", tip: "Claude Code",
+                    { icon: "\u{f02e9}", tip: "Wallhaven", cmd: ["qs", "-c", "shell-maison", "ipc", "call", "wallhaven", "toggle"] },
+                    { image: Qt.resolvedUrl("claude.svg"), tip: "Claude Code",
                       cmd: ["uwsm", "app", "--", "ghostty", "--working-directory=" + bar.home + "/.config", "-e", bar.home + "/.local/bin/claude"] },
-                    { icon: "\u{f03d7}", tip: "Mises à jour", updates: true, cmd: ["noctalia", "msg", "panel-toggle", "yuuto/arch-updater:panel"] }
+                    { icon: "\u{f03d7}", tip: "Mises à jour", updates: true, cmd: [Quickshell.shellDir + "/bin/mises-a-jour"] }
                 ]
                 Rectangle {
                     required property var modelData

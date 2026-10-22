@@ -69,3 +69,17 @@ rebind("SUPER + SHIFT + ALT + Comma", bin .. "island-open notifications", "Notif
 
 -- Verrouillage : Lock.qml au lieu de celui de Noctalia
 rebind("SUPER + CTRL + L", "qs -c shell-maison ipc call lock lock", "Système: Verrouiller l'écran")
+
+-- Lumière nocturne et veille bloquée : processus tenus par Sys.qml (même état que les tuiles de l'île)
+rebind("SUPER + CTRL + N", "qs -c shell-maison ipc call system nightlight", "Système: Veilleuse (lumière chaude)")
+rebind("SUPER + CTRL + I", "qs -c shell-maison ipc call system caffeine",   "Système: Bloquer / autoriser la mise en veille")
+rebind("SUPER + SHIFT + Space", "qs -c shell-maison ipc call bar toggle",   "Système: Masquer / afficher la barre")
+
+-- Captures : grim + slurp + satty (bin/capture) au lieu de Noctalia
+rebind("Print",             bin .. "capture ecran", "Captures: Écran entier")
+rebind("SUPER + SHIFT + S", bin .. "capture zone",  "Captures: Zone de l'écran")
+
+-- Sans Noctalia : plus de fenêtre de réglages ; luminosité sans effet sur un écran HDMI
+for _, key in ipairs({ "SUPER + Z", "XF86MonBrightnessUp", "XF86MonBrightnessDown" }) do
+    pcall(hl.unbind, key)
+end

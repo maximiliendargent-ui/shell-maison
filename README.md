@@ -10,14 +10,14 @@ Ce dépôt ne contient que le nouveau shell.
 
 Session **« Hyprland (Maison) »** à l'écran de connexion (`uwsm start -D Hyprland:maison`) : elle lit
 `~/.config/uwsm/env-maison` (`SHELL_MAISON=1`), et `hyprland.lua` charge alors `hypr/maison.lua`, qui lance
-`qs -c shell-maison`, masque la barre de Noctalia et branche les raccourcis sur l'île.
+`qs -c shell-maison` et branche les raccourcis dessus. Noctalia n'y est pas lancé (`autostart.lua` le saute
+quand `SHELL_MAISON` est défini).
 La session « Hyprland (Noctalia) » reste le bureau stable.
 
 À la main : `ln -s ~/Projects/shell-maison ~/.config/quickshell/shell-maison` (une fois), puis `qs -c shell-maison`.
 
 Essais : `ISLAND_TEST=meteo qs -c shell-maison` (île ouverte sur un onglet), `BAR_TEST=1 qs -c shell-maison`
-(barre toujours sortie). Pendant les essais, masquer la barre de Noctalia : `noctalia msg bar-hide`
-(`bar-show` pour la remettre).
+(barre toujours sortie).
 
 ## Composants
 
@@ -34,7 +34,10 @@ Essais : `ISLAND_TEST=meteo qs -c shell-maison` (île ouverte sur un onglet), `B
 | `Lock.qml`, `LockContent.qml`, `pam/lock` | Écran de verrouillage : fond flouté, horloge, date et météo, musique, mot de passe (pile PAM `pam/lock`, sans délai après un échec, limite faillock gardée). Essai sans risque : `qs -c shell-maison ipc call lock test` | Écran de verrouillage |
 | `Emojis.qml` | Sélecteur d'emojis : recherche en anglais, Entrée copie (`emojis.json`, généré par `bin/gen-emojis.py`) | Lanceur `/emo` |
 | `Clipboard.qml` | Historique du presse-papiers (cliphist), recherche, Suppr efface | Presse-papiers |
-| `Sys.qml` | État partagé : musique (MPRIS, touches multimédia), son (PipeWire), Wi-Fi (nmcli), moniteurs, météo (Open-Meteo) | |
+| `Sys.qml` | État partagé : musique (MPRIS, touches multimédia), son (PipeWire), Wi-Fi (nmcli), moniteurs, météo (Open-Meteo), lumière nocturne (hyprsunset) et veille bloquée (`systemd-inhibit`, respecté par hypridle) lancées par le shell (`ipc call system nightlight\|caffeine`) | Lumière nocturne, caféine |
+| `Wallhaven.qml` | Fonds Wallhaven : recherche, vignettes, un clic télécharge dans `~/Pictures/Wallpapers` et applique (`bin/fond`) | Plugin Wallhaven |
+| `bin/capture` | Captures `zone` ou `ecran` (grim, slurp) annotées dans satty : Entrée copie, Ctrl + S enregistre dans `~/Pictures/Screenshots` | Captures |
+| `bin/mises-a-jour` | Mise à jour (paru, Flatpak) dans Ghostty : bouton de la barre, notification de `~/.local/bin/auto-update` | Plugin arch-updater |
 | `Theme.qml` | Couleurs, police (Maple Mono NF), courbes d'animation | |
 | `Card.qml`, `Tile.qml`, `Level.qml`, `ListRow.qml`, `MediaCard.qml` | Briques d'interface | |
 | `hypr/maison.lua` | Réglages Hyprland de la session Maison : démarrage (shell, cliphist), raccourcis (île, notifications, son, multimédia, emojis, presse-papiers) | |
@@ -45,10 +48,10 @@ Essais : `ISLAND_TEST=meteo qs -c shell-maison` (île ouverte sur un onglet), `B
 
 ## Encore pris chez Noctalia
 
-- OSD de luminosité, captures.
-- Boutons Wallhaven et mises à jour de la barre : panneaux des plugins Noctalia ; bouton Réglages de l'île.
-  Le fond choisi dans Wallhaven passe par Noctalia, dont le fond est coupé : il ne s'applique pas dans la session Maison.
+Rien dans la session Maison. Restent hors de ce dépôt : les sessions « Hyprland (Noctalia) », niri et KDE,
+l'écran de connexion (Noctalia Greeter), et les modèles perso de `~/.config/noctalia/templates/`
+(copiés dans `couleurs/modeles/`).
 
 ## À faire
 
-Annotation des captures (satty).
+OSD de luminosité : sans objet sur l'écran HDMI actuel.

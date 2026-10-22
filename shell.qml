@@ -14,4 +14,5 @@ ShellRoot {
     Lock {}
     Emojis {}
     Clipboard {}
+    Wallhaven {}
 }

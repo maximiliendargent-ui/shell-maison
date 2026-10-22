@@ -58,9 +58,18 @@ Column {
         }
     }
 
-    Tile {
-        width: parent.width; height: 52
-        icon: "\u{f0594}"; label: "Lumière nocturne"; on: Sys.nightlight
-        onClicked: { Sys.nightlight = !Sys.nightlight; Sys.run(["sh", "-c", "pkill -x hyprsunset || exec hyprsunset -t 4000"]) }
+    Row {
+        width: parent.width
+        spacing: 10
+        Tile {
+            width: (parent.width - 10) / 2; height: 52
+            icon: "\u{f0594}"; label: "Lumière nocturne"; on: Sys.nightlight
+            onClicked: Sys.toggleNightlight()
+        }
+        Tile {
+            width: (parent.width - 10) / 2; height: 52
+            icon: "\u{f0176}"; label: "Veille bloquée"; on: Sys.caffeine
+            onClicked: Sys.toggleCaffeine()
+        }
     }
 }

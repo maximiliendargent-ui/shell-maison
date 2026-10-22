@@ -39,10 +39,25 @@ Singleton {
     PwObjectTracker { objects: [sys.sink, sys.source].concat(sys.sinks).concat(sys.streams) }
 
     // Wi-Fi lu auprès de NetworkManager (Bluetooth : module Quickshell, dans Appareils.qml).
-    // La lumière nocturne n'a pas de lecture d'état : retenue ici.
-    // ponytail: état local, faux si on la bascule ailleurs (barre, raccourci) ; lire hyprsunset quand il la gérera
     property bool wifi: false
-    property bool nightlight: false
+
+    // Lumière nocturne (hyprsunset) et veille bloquée (systemd-inhibit, respecté par hypridle) : processus
+    // lancés par le shell, allumés tant qu'ils tournent.
+    // qs -c shell-maison ipc call system <nightlight|caffeine> (Super + Ctrl + N, Super + Ctrl + I)
+    readonly property bool nightlight: sunset.running
+    readonly property bool caffeine: inhibit.running
+    function toggleNightlight() { sunset.running = !sunset.running }
+    function toggleCaffeine() { inhibit.running = !inhibit.running }
+    Process { id: sunset; command: ["hyprsunset", "-t", "4000"] }
+    Process {
+        id: inhibit
+        command: ["systemd-inhibit", "--what=idle", "--who=shell-maison", "--why=Veille bloquée", "sleep", "infinity"]
+    }
+    IpcHandler {
+        target: "system"
+        function nightlight(): void { sys.toggleNightlight() }
+        function caffeine(): void { sys.toggleCaffeine() }
+    }
 
     Process {
         id: status
