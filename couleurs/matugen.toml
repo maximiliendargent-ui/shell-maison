@@ -47,11 +47,11 @@ output_path = "~/.vscode/extensions/noctalia.noctaliatheme-0.0.5/themes/Noctalia
 
 [templates.zen_chrome]
 input_path = "modeles/zen-userChrome.css"
-output_path = "~/.cache/noctalia/zen-browser/zen-userChrome.css"
+output_path = "~/.cache/shell-maison/zen-browser/zen-userChrome.css"
 
 [templates.zen_content]
 input_path = "modeles/zen-userContent.css"
-output_path = "~/.cache/noctalia/zen-browser/zen-userContent.css"
+output_path = "~/.cache/shell-maison/zen-browser/zen-userContent.css"
 
 [templates.pywalfox]
 input_path = "modeles/pywalfox.json"
@@ -83,10 +83,6 @@ post_hook = "setsid -f flock ~/.local/state/shell-maison/papirus.lock bash ~/Pro
 input_path = "modeles/hyprland-borders.lua"
 output_path = "~/.config/hypr/config/noctalia_colors.lua"
 post_hook = "hyprctl reload"
-
-[templates.niri_borders]
-input_path = "modeles/niri-borders.kdl"
-output_path = "~/.config/niri/noctalia.kdl"
 
 [templates.menu_colors]
 input_path = "modeles/menu-colors.json"
