@@ -29,7 +29,7 @@ Scope {
 
     Process {
         id: wallpaperProc
-        command: ["noctalia", "msg", "wallpaper-get"]
+        command: [Quickshell.shellDir + "/bin/fond", "get"]
         stdout: StdioCollector { onStreamFinished: lock.wallpaper = text.trim() }
     }
 

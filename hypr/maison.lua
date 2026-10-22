@@ -4,12 +4,15 @@
 
 local bin = os.getenv("HOME") .. "/Projects/shell-maison/bin/"
 
--- Noctalia tourne encore (couleurs, fond d'écran, verrouillage…), avec sa config de session Maison
--- (noctalia/noctalia/zz-maison.toml : sans barre, notifications ni agent Polkit)
+-- Noctalia tourne encore (plugins, réglages…), avec sa config de session Maison
+-- (noctalia/noctalia/zz-maison.toml : sans barre, notifications, agent Polkit, fond ni couleurs)
 hl.on("hyprland.start", function ()
     hl.exec_cmd("qs -c shell-maison")
-    -- Verrouillage et extinction de l écran après inactivité
+    -- Verrouillage et extinction de l'écran après inactivité
     hl.exec_cmd("hypridle -c " .. os.getenv("HOME") .. "/Projects/shell-maison/hypr/hypridle.conf")
+    -- Fond d'écran au hasard et couleurs (bin/fond), une fois le démon awww prêt
+    hl.exec_cmd("awww-daemon")
+    hl.exec_cmd("sh -c 'until awww query >/dev/null 2>&1; do sleep 0.2; done; " .. bin .. "fond'")
     -- Historique du presse-papiers (Clipboard.qml) : texte et images
     hl.exec_cmd("wl-paste --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")

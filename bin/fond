@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Fond d'écran (awww) et couleurs du bureau tirées du fond (matugen, couleurs/matugen.toml).
+# fond <image> : applique cette image ; fond : une image au hasard de ~/Pictures/Wallpapers ;
+# fond get : affiche le fond actuel.
+set -euo pipefail
+
+state="${XDG_STATE_HOME:-$HOME/.local/state}/shell-maison/fond"
+[[ ${1:-} == get ]] && exec cat "$state"
+
+img="${1:-$(find ~/Pictures/Wallpapers -maxdepth 1 -type f \
+    \( -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.png' -o -iname '*.webp' \) | shuf -n 1)}"
+img="$(realpath "$img")"
+
+awww img "$img" --transition-type fade --transition-duration 1
+mkdir -p "$(dirname "$state")"
+echo "$img" > "$state"
+
+# Mêmes réglages que Noctalia : schéma « content », sombre, couleur la plus présente
+cd "$(dirname "$(realpath "$0")")/../couleurs"
+matugen image "$img" -c matugen.toml -m dark -t scheme-content --source-color-index 0 -q

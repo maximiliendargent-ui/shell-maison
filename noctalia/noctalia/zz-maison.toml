@@ -14,3 +14,25 @@ enable_daemon = false
 # Fenêtre de mot de passe (pkexec) : Polkit.qml
 [shell]
 polkit_agent = false
+
+# Fond d'écran et couleurs : bin/fond (awww + matugen, couleurs/matugen.toml)
+[wallpaper]
+enabled = false
+
+[theme.templates]
+enable_builtin_templates = false
+enable_community_templates = false
+
+# Modèles perso de config.toml : sorties détournées vers un dossier ignoré, matugen écrit les vraies
+[theme.templates.user.hyprland_borders]
+output_path = "$XDG_CACHE_HOME/shell-maison/noctalia-ignore/hyprland-borders.lua"
+post_hook = "true"
+
+[theme.templates.user.niri_borders]
+output_path = "$XDG_CACHE_HOME/shell-maison/noctalia-ignore/niri-borders.kdl"
+
+[theme.templates.user.menu_colors]
+output_path = "$XDG_CACHE_HOME/shell-maison/noctalia-ignore/menu-colors.json"
+
+[theme.templates.user.startpage_colors]
+output_path = "$XDG_CACHE_HOME/shell-maison/noctalia-ignore/startpage-colors.css"
