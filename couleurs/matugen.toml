@@ -70,11 +70,12 @@ output_path = "~/.config/vesktop/themes/noctalia-material.theme.css"
 input_path = "modeles/discord-system24.css"
 output_path = "~/.config/vesktop/themes/discord-system24.css"
 
-# Dossiers Papirus : teinte la plus proche du fond (script repris du modèle communautaire)
+# Dossiers Papirus : teinte la plus proche du fond (script repris du modèle communautaire), en arrière-plan :
+# papirus-folders prend ~6 s et matugen attend chaque post_hook avant de passer au modèle suivant
 [templates.papirus]
 input_path = "papirus/colors"
 output_path = "~/Projects/shell-maison/couleurs/papirus/colors-final"
-post_hook = "bash ~/Projects/shell-maison/couleurs/papirus/apply.sh"
+post_hook = "setsid -f flock ~/.local/state/shell-maison/papirus.lock bash ~/Projects/shell-maison/couleurs/papirus/apply.sh >/dev/null 2>&1"
 
 # Bureau
 
