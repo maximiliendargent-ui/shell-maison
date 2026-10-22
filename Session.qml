@@ -15,7 +15,7 @@ Grid {
         model: [
             { id: "lock", icon: "\u{f033e}", label: "Verrouiller", cmd: ["qs", "-c", "shell-maison", "ipc", "call", "lock", "lock"] },
             { id: "sleep", icon: "\u{f04b2}", label: "Veille", cmd: ["systemctl", "suspend-then-hibernate"] },
-            { id: "logout", icon: "\u{f0343}", label: "Déconnexion", cmd: ["uwsm", "stop"], confirm: true },
+            { id: "logout", icon: "\u{f0343}", label: "Déconnexion", cmd: ["sh", "-c", "uwsm check is-active && exec uwsm stop; exec loginctl terminate-session \"$XDG_SESSION_ID\""], confirm: true },
             { id: "reboot", icon: "\u{f0709}", label: "Redémarrer", cmd: ["systemctl", "reboot"], confirm: true },
             { id: "windows", icon: "\u{f05b3}", label: "Windows", cmd: [Quickshell.env("HOME") + "/.local/bin/reboot-windows"], confirm: true },
             { id: "off", icon: "\u{f0425}", label: "Éteindre", cmd: ["systemctl", "poweroff"], confirm: true }
