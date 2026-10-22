@@ -61,6 +61,6 @@ Column {
     Tile {
         width: parent.width; height: 52
         icon: "\u{f0594}"; label: "Lumière nocturne"; on: Sys.nightlight
-        onClicked: { Sys.nightlight = !Sys.nightlight; Sys.run(["noctalia", "msg", "nightlight-force-toggle"]) }
+        onClicked: { Sys.nightlight = !Sys.nightlight; Sys.run(["sh", "-c", "pkill -x hyprsunset || exec hyprsunset -t 4000"]) }
     }
 }

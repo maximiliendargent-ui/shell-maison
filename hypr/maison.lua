@@ -8,6 +8,8 @@ local bin = os.getenv("HOME") .. "/Projects/shell-maison/bin/"
 -- (noctalia/noctalia/zz-maison.toml : sans barre, notifications ni agent Polkit)
 hl.on("hyprland.start", function ()
     hl.exec_cmd("qs -c shell-maison")
+    -- Verrouillage et extinction de l écran après inactivité
+    hl.exec_cmd("hypridle -c " .. os.getenv("HOME") .. "/Projects/shell-maison/hypr/hypridle.conf")
     -- Historique du presse-papiers (Clipboard.qml) : texte et images
     hl.exec_cmd("wl-paste --watch cliphist store")
     hl.exec_cmd("wl-paste --type image --watch cliphist store")
