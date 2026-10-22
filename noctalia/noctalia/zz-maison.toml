@@ -19,6 +19,9 @@ polkit_agent = false
 [wallpaper]
 enabled = false
 
+# Attention : couper ces modèles pendant que Noctalia tourne lance leurs undo_hook (retirent le thème
+# « noctalia » des configs Ghostty, btop, cava, GTK). Au démarrage, rien n'est annulé. Réparer :
+# bash /usr/share/noctalia/assets/templates/{ghostty,btop,cava}/apply.sh ; …/gtk/apply.sh dark
 [theme.templates]
 enable_builtin_templates = false
 enable_community_templates = false
