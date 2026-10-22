@@ -1,20 +1,4 @@
 #!/bin/bash
 # Ouvre l'île (shell-maison) sur un onglet, ou la referme si elle l'affiche déjà.
-# Sans île (niri, KDE), ouvre le panneau de Noctalia équivalent (centre de contrôle ou session).
 # Usage : island-open [accueil|musique|son|systeme|wifi|bluetooth|meteo|calendrier|notifications|session]
-
-tab=${1:-accueil}
-qs -c shell-maison ipc call island toggle "$tab" 2>/dev/null && exit 0
-[[ $tab == session ]] && exec noctalia msg panel-toggle session
-
-case $tab in
-    musique) panel=media ;;
-    son) panel=audio ;;
-    wifi) panel=network ;;
-    bluetooth) panel=bluetooth ;;
-    meteo) panel=weather ;;
-    calendrier) panel=calendar ;;
-    notifications) panel=notifications ;;
-    *) panel= ;;
-esac
-noctalia msg panel-toggle control-center $panel
+exec qs -c shell-maison ipc call island toggle "${1:-accueil}"

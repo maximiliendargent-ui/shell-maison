@@ -1,4 +1,4 @@
-// Onglet Météo : conditions actuelles et 7 jours (cache de Noctalia)
+// Onglet Météo : conditions actuelles et 7 jours (Open-Meteo, Sys.qml)
 import QtQuick
 
 Column {

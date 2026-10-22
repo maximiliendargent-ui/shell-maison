@@ -1,4 +1,4 @@
-// Historique du presse-papiers (cliphist, alimenté par wl-paste --watch, lancé par hypr/maison.lua).
+// Historique du presse-papiers (cliphist, alimenté par wl-paste --watch, lancé par ~/.config/hypr/config/autostart.lua).
 // Recherche, flèches, Entrée ou clic : recopie l'élément ; Suppr : l'efface de l'historique ; Échap : ferme.
 // Ouvrir : qs -c shell-maison ipc call clipboard toggle (Super + V)
 import QtQuick

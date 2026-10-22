@@ -1,4 +1,4 @@
-// Couleurs (menu/colors.json, généré par Noctalia à partir du fond d'écran), police et courbes partagées
+// Couleurs (menu/colors.json, généré par matugen à partir du fond d'écran, bin/fond), police et courbes partagées
 pragma Singleton
 
 import QtQuick

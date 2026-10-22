@@ -1,7 +1,7 @@
-// Île façon saneAspect, avec toutes les fonctions du centre de contrôle de Noctalia.
+// Île façon saneAspect : centre de contrôle, session, notifications.
 // Repliée : pastille en haut au centre avec l'heure (et le morceau en cours).
 // Au survol, elle se transforme en panneau à onglets : Accueil (heure, météo, lumière nocturne),
-// Musique, Son, Système, Wi-Fi, Bluetooth, Météo, Calendrier ; bouton Réglages de Noctalia, bouton ⏻ = onglet Session.
+// Musique, Son, Système, Wi-Fi, Bluetooth, Météo, Calendrier ; bouton ⏻ = onglet Session.
 // Repli quand la souris s'en va.
 // Masquée sur l'espace gaming et par-dessus une fenêtre en plein écran.
 // État partagé : Sys.qml ; couleurs : Theme.qml. Chargée par shell.qml.
@@ -95,7 +95,7 @@ Scope {
     PanelWindow {
         visible: !root.hidden
         anchors.top: true
-        margins.top: 6  // laisse libre le bord actif du haut (centre de contrôle de Noctalia)
+        margins.top: 6  // laisse libre le bord actif du haut (vue d'ensemble)
         exclusiveZone: 0
         implicitWidth: 620
         implicitHeight: 780

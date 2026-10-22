@@ -1,6 +1,4 @@
 // Notifications : serveur org.freedesktop.Notifications, bulles affichées, historique, Ne pas déranger.
-// Noctalia tient le service au démarrage : on le lui reprend (il l'autorise), et il le récupère tout seul
-// si shell-maison s'arrête.
 // Historique enregistré dans ~/.local/state/shell-maison/notifications.json (50 dernières).
 pragma Singleton
 
@@ -31,19 +29,6 @@ Singleton {
             if (!notifs.dnd || n.urgency === NotificationUrgency.Critical) notifs.popups = [n].concat(notifs.popups)
             n.closed.connect(() => notifs.popups = notifs.popups.filter(p => p !== n))
         }
-    }
-
-    // Reprend le service à Noctalia : un appel RequestName avec « remplacer » le lui retire puis le libère
-    // aussitôt (busctl se ferme). Le serveur ci-dessus et Noctalia se le disputent alors : on recommence
-    // jusqu'à ce que ce soit nous (qs), 15 essais au plus
-    Timer {
-        running: true
-        interval: 1500
-        onTriggered: Quickshell.execDetached(["sh", "-c",
-            "for i in $(seq 15); do " +
-            "[ \"$(busctl --user status org.freedesktop.Notifications 2>/dev/null | sed -n 's/^Comm=//p')\" = qs ] && exit 0; " +
-            "busctl --user call org.freedesktop.DBus /org/freedesktop/DBus org.freedesktop.DBus " +
-            "RequestName su org.freedesktop.Notifications 6 >/dev/null; sleep 1; done"])
     }
 
     // Message bref affiché par Popups.qml (ex. Ne pas déranger activé)

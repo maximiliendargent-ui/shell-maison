@@ -1,6 +1,5 @@
 // Agent Polkit : fenêtre de mot de passe quand une appli demande des droits (pkexec, Manager, mises à jour…).
-// Entrée : valider ; Échap ou clic à côté : annuler. Un seul agent peut exister par session : Noctalia
-// n'est pas lancé dans la session Maison.
+// Entrée : valider ; Échap ou clic à côté : annuler. Un seul agent peut exister par session.
 import QtQuick
 import Quickshell
 import Quickshell.Wayland

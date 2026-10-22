@@ -1,4 +1,4 @@
-// Barre verticale à gauche, comme celle de Noctalia : espaces de travail (chiffres), heure, Wallhaven,
+// Barre verticale à gauche : espaces de travail (chiffres), heure, Wallhaven,
 // Claude, mises à jour. Masquée : elle sort quand la souris touche le bord gauche (ou un instant au
 // changement d'espace) et rentre quand la souris s'en va. Ne réserve pas de place aux fenêtres.
 // Absente sur l'espace gaming et par-dessus une fenêtre en plein écran.
