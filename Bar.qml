@@ -24,6 +24,8 @@ Scope {
     IpcHandler {
         target: "bar"
         function toggle(): void { bar.off = !bar.off }
+        // Sort la barre un instant (captures, essais)
+        function peek(): void { bar.shown = true; hide.restart() }
     }
 
     // Essais : BAR_TEST=1 la garde sortie
@@ -78,6 +80,7 @@ Scope {
             Rectangle {
                 width: bar.size
                 height: wsCol.implicitHeight + 8
+                radius: width / 2  // bouts en demi-cercle, comme l'île
                 color: Theme.c.surface_container
                 Column {
                     id: wsCol
@@ -89,6 +92,7 @@ Scope {
                             required property var modelData
                             readonly property bool current: modelData.id === bar.currentWs
                             width: bar.size - 8; height: 30
+                            radius: height / 2
                             color: current ? Theme.c.primary : wsMouse.containsMouse ? Theme.c.surface_container_high : "transparent"
                             Text {
                                 anchors.centerIn: parent
@@ -105,6 +109,7 @@ Scope {
             // Heure, sur deux lignes
             Rectangle {
                 width: bar.size; height: 50
+                radius: width / 2
                 color: Theme.c.surface_container
                 Text {
                     anchors.centerIn: parent
@@ -127,6 +132,7 @@ Scope {
                 Rectangle {
                     required property var modelData
                     width: bar.size; height: modelData.updates && bar.updates ? 54 : 40
+                    radius: width / 2
                     color: btnMouse.containsMouse ? Theme.c.surface_container_high : Theme.c.surface_container
                     Column {
                         anchors.centerIn: parent
