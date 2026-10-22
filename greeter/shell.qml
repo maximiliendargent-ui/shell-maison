@@ -24,6 +24,7 @@ ShellRoot {
 
     property string wallpaper: ""
     property string error: ""
+    property string notice: ""  // essai : message neutre, pas une erreur
     property string typed: ""
 
     // Couleurs du bureau (générées par matugen à partir du fond), avec des valeurs de secours
@@ -58,7 +59,7 @@ ShellRoot {
     function submit(password) {
         if (!password || Greetd.state !== GreetdState.Inactive) return
         error = ""
-        if (testing) { error = "Essai : connexion simulée (" + sessions[session].name + ")"; return }
+        if (testing) { notice = "Essai : mot de passe non vérifié, lancerait « " + sessions[session].name + " »"; return }
         typed = password
         Greetd.createSession(user)
     }
@@ -158,8 +159,8 @@ ShellRoot {
         }
         Text {
             anchors { horizontalCenter: parent.horizontalCenter; top: pass.bottom; topMargin: 12 }
-            text: root.error
-            color: root.c.error
+            text: root.error || root.notice
+            color: root.error ? root.c.error : root.c.on_surface_variant
             font { family: root.font; pixelSize: 13 }
         }
 
