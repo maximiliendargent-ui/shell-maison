@@ -1,0 +1,13 @@
+#!/bin/sh
+# Lancé par greetd (/etc/greetd/config.toml, utilisateur greeter) : Hyprland minimal + écran de connexion.
+# Journaux : journalctl -t shell-maison-greeter
+
+# Dossier d'exécution propre au greeter (greetd n'en fournit pas toujours un)
+XDG_RUNTIME_DIR="/tmp/shell-maison-greeter-$(id -u)"
+export XDG_RUNTIME_DIR
+mkdir -p "$XDG_RUNTIME_DIR" && chmod 700 "$XDG_RUNTIME_DIR"
+
+# Carte NVIDIA (comme ~/.config/uwsm/env)
+export GBM_BACKEND=nvidia-drm __GLX_VENDOR_LIBRARY_NAME=nvidia LIBVA_DRIVER_NAME=nvidia EGL_PLATFORM=wayland
+
+Hyprland -c /etc/greetd/shell-maison/hyprland.lua 2>&1 | systemd-cat -t shell-maison-greeter

@@ -1,0 +1,11 @@
+#!/bin/sh
+# Installe l'écran de connexion dans /etc/greetd/shell-maison et le donne à greetd (à lancer avec sudo).
+# L'ancien /etc/greetd/config.toml est gardé en config.toml.bak.
+set -eu
+src="$(dirname "$(realpath "$0")")"
+install -d /etc/greetd/shell-maison
+install -m 644 "$src/shell.qml" "$src/hyprland.lua" /etc/greetd/shell-maison/
+install -m 755 "$src/start" /etc/greetd/shell-maison/
+[ -f /etc/greetd/config.toml.bak ] || cp /etc/greetd/config.toml /etc/greetd/config.toml.bak
+sed -i 's|^command = .*|command = "/etc/greetd/shell-maison/start"|' /etc/greetd/config.toml
+grep -n '^command' /etc/greetd/config.toml
