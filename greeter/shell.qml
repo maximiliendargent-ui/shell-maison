@@ -1,4 +1,4 @@
-// Écran de connexion (greetd) : fond au hasard flouté, heure, date, mot de passe, choix de la session,
+// Écran de connexion (greetd) : fond au hasard (net, assombri), heure, date, mot de passe, choix de la session,
 // redémarrer / éteindre. Même style que l'écran de verrouillage (LockContent.qml).
 // Installé dans /etc/greetd/shell-maison par greeter/installer, lancé par greeter/start dans un Hyprland minimal.
 // Essai dans la session (sans greetd, connexion simulée, Échap ferme) : GREETER_TEST=1 qs -p greeter/shell.qml
@@ -104,9 +104,7 @@ ShellRoot {
         MultiEffect {
             anchors.fill: parent
             source: wall
-            blurEnabled: true
-            blur: 1
-            blurMax: 64
+            blurEnabled: false  // fond net ; juste assombri pour lire l'heure
             brightness: -0.25
         }
 
@@ -153,7 +151,7 @@ ShellRoot {
                 Text {
                     visible: !input.text
                     anchors.centerIn: parent
-                    text: "\u{f0004}  " + root.user
+                    text: "\u{f033e}  Mot de passe"
                     color: root.c.on_surface_variant
                     font: input.font
                 }
