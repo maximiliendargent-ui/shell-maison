@@ -1,0 +1,8 @@
+#%PAM-1.0
+# Pile du verrouillage (Lock.qml) : comme system-auth, sans le délai de pam_unix et pam_faillock après un échec.
+# pam_faillock garde la limite (3 échecs → compte bloqué 10 min, /etc/security/faillock.conf).
+auth       required                    pam_faillock.so      preauth nodelay
+auth       [success=1 default=bad]     pam_unix.so          try_first_pass nodelay
+auth       [default=die]               pam_faillock.so      authfail nodelay
+auth       required                    pam_faillock.so      authsucc
+account    required                    pam_unix.so

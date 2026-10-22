@@ -40,11 +40,12 @@ Scope {
         function stopTest(): void { lock.testing = false }
     }
 
-    // Vérification du mot de passe (pile PAM « login », la même qu'à la console)
+    // Vérification du mot de passe (pile PAM pam/lock du dépôt : celle de la console, sans délai après un échec)
     property string typed: ""
     PamContext {
         id: pam
-        config: "login"
+        configDirectory: Quickshell.shellDir + "/pam"
+        config: "lock"
         onResponseRequiredChanged: if (responseRequired) respond(lock.typed)
         onCompleted: result => {
             lock.typed = ""
