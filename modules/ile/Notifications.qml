@@ -1,5 +1,7 @@
 // Onglet Notifications de l'île : Ne pas déranger, historique (le plus récent en haut), tout effacer
 import QtQuick
+import qs.services
+import qs.components
 
 Column {
     spacing: 8

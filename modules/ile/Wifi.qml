@@ -1,6 +1,8 @@
 // Onglet Wi-Fi : interrupteur, réseaux visibles ; clic = se connecter (mot de passe demandé si réseau inconnu protégé)
 import QtQuick
 import Quickshell
+import qs.services
+import qs.components
 
 Column {
     id: tab

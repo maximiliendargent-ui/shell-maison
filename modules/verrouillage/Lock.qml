@@ -8,6 +8,8 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
 import Quickshell.Services.Pam
+import qs.services
+import qs.components
 
 Scope {
     id: lock

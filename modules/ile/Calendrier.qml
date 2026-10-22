@@ -1,5 +1,7 @@
 // Onglet Calendrier : mois en cours (lundi en premier), flèches pour changer de mois, aujourd'hui en couleur
 import QtQuick
+import qs.services
+import qs.components
 
 Column {
     id: cal

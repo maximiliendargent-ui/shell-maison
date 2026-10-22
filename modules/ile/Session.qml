@@ -2,6 +2,8 @@
 // Les actions qui ferment la session demandent un second clic (la tuile passe en rouge 3 s).
 import QtQuick
 import Quickshell
+import qs.services
+import qs.components
 
 Grid {
     id: session

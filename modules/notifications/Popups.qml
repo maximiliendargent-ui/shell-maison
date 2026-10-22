@@ -6,6 +6,8 @@ import Quickshell
 import Quickshell.Wayland
 import Quickshell.Widgets
 import Quickshell.Services.Notifications
+import qs.services
+import qs.components
 
 Scope {
     PanelWindow {

@@ -1,6 +1,8 @@
 // Onglet Bluetooth : interrupteur, recherche, appareils ; clic = connecter / déconnecter (ou appairer)
 import QtQuick
 import Quickshell.Bluetooth
+import qs.services
+import qs.components
 
 Column {
     spacing: 8

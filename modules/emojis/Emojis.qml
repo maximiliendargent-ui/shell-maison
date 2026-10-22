@@ -1,11 +1,13 @@
 // Sélecteur d'emojis : recherche (noms anglais : « heart », « smile »…), flèches pour choisir,
 // Entrée ou clic pour copier dans le presse-papiers, Échap pour fermer.
 // Ouvrir : qs -c shell-maison ipc call emojis toggle (Super + Ctrl + E, Super + .)
-// Liste : emojis.json, générée par bin/gen-emojis.py.
+// Liste : assets/emojis.json, générée par bin/gen-emojis.py.
 import QtQuick
 import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
+import qs.services
+import qs.components
 
 Scope {
     id: picker
@@ -18,7 +20,7 @@ Scope {
     }
 
     FileView {
-        path: Qt.resolvedUrl("emojis.json").toString().replace("file://", "")
+        path: Quickshell.shellDir + "/assets/emojis.json"
         onLoaded: picker.all = JSON.parse(text())
     }
 

@@ -1,6 +1,8 @@
 // Onglet Musique : grande carte du lecteur, choix du lecteur s'il y en a plusieurs,
 // puis volume de chaque son en cours (« Firefox — Netflix » : appli et titre de la page ou du flux)
 import QtQuick
+import qs.services
+import qs.components
 
 Column {
     spacing: 10

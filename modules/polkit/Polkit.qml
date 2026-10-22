@@ -4,6 +4,8 @@ import QtQuick
 import Quickshell
 import Quickshell.Wayland
 import Quickshell.Services.Polkit
+import qs.services
+import qs.components
 
 Scope {
     id: root

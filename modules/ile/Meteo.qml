@@ -1,5 +1,7 @@
 // Onglet Météo : conditions actuelles et 7 jours (Open-Meteo, Sys.qml)
 import QtQuick
+import qs.services
+import qs.components
 
 Column {
     spacing: 12

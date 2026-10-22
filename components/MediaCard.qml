@@ -1,5 +1,6 @@
 // Carte musique : pochette, titres, précédent / lecture / suivant, progression (cliquable si le lecteur le permet)
 import QtQuick
+import qs.services
 
 Card {
     id: card

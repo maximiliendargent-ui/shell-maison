@@ -8,6 +8,8 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
 import Quickshell.Hyprland
+import qs.services
+import qs.components
 
 Scope {
     id: bar
@@ -125,7 +127,7 @@ Scope {
             Repeater {
                 model: [
                     { icon: "\u{f02e9}", tip: "Wallhaven", cmd: ["qs", "-c", "shell-maison", "ipc", "call", "wallhaven", "toggle"] },
-                    { image: Qt.resolvedUrl("claude.svg"), tip: "Claude Code",
+                    { image: "file://" + Quickshell.shellDir + "/assets/claude.svg", tip: "Claude Code",
                       cmd: ["uwsm", "app", "--", "ghostty", "--working-directory=" + bar.home + "/.config", "-e", bar.home + "/.local/bin/claude"] },
                     { icon: "\u{f03d7}", tip: "Mises à jour", updates: true, cmd: [Quickshell.shellDir + "/bin/mises-a-jour"] }
                 ]

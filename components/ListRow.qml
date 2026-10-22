@@ -1,5 +1,6 @@
 // Ligne de liste cliquable (réseau, appareil, sortie audio) : icône, texte, détail à droite
 import QtQuick
+import qs.services
 
 Rectangle {
     id: row

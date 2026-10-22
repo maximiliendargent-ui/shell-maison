@@ -1,5 +1,7 @@
 // Onglet Système : processeur, mémoire, carte graphique, disque (relus toutes les 2 s pendant l'affichage)
 import QtQuick
+import qs.services
+import qs.components
 
 Column {
     spacing: 12

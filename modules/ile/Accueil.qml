@@ -2,6 +2,8 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import qs.services
+import qs.components
 
 Column {
     id: home

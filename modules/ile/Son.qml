@@ -1,6 +1,8 @@
 // Onglet Son : volumes sortie et micro, choix de la sortie (le volume par appli est dans l'onglet Musique)
 import QtQuick
 import Quickshell.Services.Pipewire
+import qs.services
+import qs.components
 
 Column {
     spacing: 12

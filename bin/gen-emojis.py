@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Génère emojis.json (caractère + nom anglais en minuscules) pour Emojis.qml, à partir de la base
+"""Génère assets/emojis.json (caractère + nom anglais en minuscules) pour Emojis.qml, à partir de la base
 Unicode de Python. À relancer après une mise à jour de Python pour avoir les nouveaux emojis."""
 import json
 import pathlib
@@ -16,6 +16,6 @@ for start, end in RANGES:
             # U+FE0F : forme emoji (en couleur) pour les caractères affichés en texte par défaut
             emojis.append([chr(cp) + "\ufe0f", name.lower()])
 
-out = pathlib.Path(__file__).resolve().parent.parent / "emojis.json"
+out = pathlib.Path(__file__).resolve().parent.parent / "assets" / "emojis.json"
 out.write_text(json.dumps(emojis, ensure_ascii=False))
 print(len(emojis), "emojis →", out)

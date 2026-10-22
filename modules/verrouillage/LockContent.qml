@@ -2,6 +2,8 @@
 import QtQuick
 import QtQuick.Effects
 import Quickshell
+import qs.services
+import qs.components
 
 Item {
     id: content

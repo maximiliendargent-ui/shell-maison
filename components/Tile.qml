@@ -1,5 +1,6 @@
 // Tuile de raccourci : icône + texte, couleur principale quand elle est active
 import QtQuick
+import qs.services
 
 Rectangle {
     id: tile

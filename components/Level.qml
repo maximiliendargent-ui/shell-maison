@@ -1,5 +1,6 @@
 // Réglette (volume…) : clic ou glisser, molette ; icône cliquable à gauche
 import QtQuick
+import qs.services
 
 Item {
     id: level
