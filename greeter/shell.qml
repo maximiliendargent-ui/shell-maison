@@ -80,7 +80,8 @@ ShellRoot {
             Greetd.cancelSession()
         }
         function onReadyToLaunch() {
-            Greetd.launch(["sh", "-c", root.sessions[root.session].exec], [], true)
+            // greetd colle les arguments avec des espaces dans « sh -c "exec …" » : passer la ligne Exec telle quelle
+            Greetd.launch([root.sessions[root.session].exec], [], true)
         }
     }
 
